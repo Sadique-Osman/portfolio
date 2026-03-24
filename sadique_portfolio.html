@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohammad Sadique — Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#0e0c1a;--gold:#f0b429;--teal:#0fd9c0;--purple:#8b5cf6;--rose:#f472b6;
+  --txt:#eeeaf8;--muted:#9590b8;
+  --card:rgba(255,255,255,0.04);--bdr:rgba(255,255,255,0.08);--bdr2:rgba(255,255,255,0.14);
+}
+body{background:var(--ink);color:var(--txt);font-family:'Inter',sans-serif;overflow-x:hidden}
+.bg-canvas{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.16;animation:drift 18s ease-in-out infinite alternate}
+.orb1{width:600px;height:600px;background:#8b5cf6;top:-100px;left:-150px;animation-duration:20s}
+.orb2{width:500px;height:500px;background:#0fd9c0;bottom:-120px;right:-100px;animation-duration:16s;animation-delay:-5s}
+.orb3{width:350px;height:350px;background:#f0b429;top:40%;left:50%;animation-duration:14s;animation-delay:-9s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(60px,40px) scale(1.15)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+
+nav{position:sticky;top:0;z-index:50;background:rgba(14,12,26,0.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;letter-spacing:1px}
+.logo .brace{color:var(--teal)}
+.logo .name{background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-links{display:flex;gap:2.5rem}
+.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:color 0.2s}
+.nav-links a:hover{color:var(--teal)}
+
+.wrap{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:0 3rem}
+.hero{display:flex;align-items:center;padding:5rem 0 4rem}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(15,217,192,0.3);border-radius:100px;padding:7px 18px;margin-bottom:2.5rem;background:rgba(15,217,192,0.06)}
+.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;display:inline-block}
+.eyebrow-txt{font-size:11px;color:var(--teal);letter-spacing:2.5px;text-transform:uppercase;font-weight:500}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:800;line-height:1.0;letter-spacing:-2px;color:var(--txt)}
+.hero-role{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;letter-spacing:-1px;margin-top:0.3rem;background:linear-gradient(90deg,var(--gold),var(--rose));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-bio{font-size:1rem;color:var(--muted);line-height:1.85;max-width:520px;margin:2rem 0 2.5rem;font-weight:300}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-solid{background:var(--teal);color:#0e0c1a;padding:13px 30px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
+.btn-solid:hover{background:#0bc4ad;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--txt);padding:13px 30px;border-radius:8px;font-size:13px;font-weight:500;border:1px solid var(--bdr2);cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+.hero-pills{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--bdr)}
+.hero-pill{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--bdr);border-radius:100px;padding:7px 16px;font-size:12px;color:var(--muted);font-weight:500}
+.pill-icon{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px}
+
+.sec{padding:6rem 0}
+.sec-chip{display:inline-block;background:rgba(139,92,246,0.12);border:1px solid rgba(139,92,246,0.3);color:#a78bfa;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:1rem;font-weight:500}
+.sec-h{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1px;color:var(--txt);margin-bottom:0.4rem}
+.sec-sub{font-size:14px;color:var(--muted);margin-bottom:2.5rem;font-weight:300;max-width:480px;line-height:1.7}
+
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-p{color:var(--muted);font-size:0.95rem;line-height:1.9;font-weight:300;margin-bottom:1.2rem}
+.about-p b{color:var(--txt);font-weight:500}
+.info-card{background:rgba(255,255,255,0.03);border:1px solid var(--bdr);border-radius:20px;overflow:hidden}
+.info-card-top{background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(15,217,192,0.1));padding:1.8rem;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:1rem}
+.avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--teal));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:#fff;flex-shrink:0}
+.info-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--txt)}
+.info-title-tag{font-size:12px;color:var(--teal);margin-top:2px;letter-spacing:1px}
+.info-rows{padding:0 1.5rem}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--bdr)}
+.info-row:last-child{border-bottom:none}
+.ikey{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.ival{font-size:13px;color:var(--txt);font-weight:500}
+.open-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(15,217,192,0.1);border:1px solid rgba(15,217,192,0.25);padding:4px 12px;border-radius:100px;font-size:11px;color:var(--teal)}
+.open-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;display:inline-block}
+
+.certs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:3rem}
+.cert-card{background:var(--card);border:1px solid var(--bdr);border-radius:14px;padding:1.2rem 1.4rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color 0.2s,transform 0.2s}
+.cert-card:hover{border-color:rgba(139,92,246,0.5);transform:translateY(-2px)}
+.cert-ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.25)}
+.cert-name{font-size:13px;font-weight:500;color:var(--txt);line-height:1.4}
+.cert-org{font-size:11px;color:var(--purple);margin-top:3px;font-weight:500}
+
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.skill-card{background:var(--card);border:1px solid var(--bdr);border-radius:16px;padding:1.5rem;transition:border-color 0.25s,transform 0.25s}
+.skill-card:hover{border-color:rgba(15,217,192,0.4);transform:translateY(-3px)}
+.sk-header{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem}
+.sk-ico{width:32px;height:32px;border-radius:8px;background:rgba(15,217,192,0.1);border:1px solid rgba(15,217,192,0.2);display:flex;align-items:center;justify-content:center;font-size:14px}
+.sk-cat{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--txt)}
+.tags{display:flex;flex-wrap:wrap;gap:7px}
+.tag{background:rgba(255,255,255,0.05);border:1px solid var(--bdr);padding:5px 12px;border-radius:6px;font-size:11px;color:var(--muted);font-weight:500;transition:all 0.2s;cursor:default}
+.tag:hover{background:rgba(15,217,192,0.1);border-color:rgba(15,217,192,0.4);color:var(--teal)}
+.tag.hi{background:rgba(15,217,192,0.1);border-color:rgba(15,217,192,0.35);color:var(--teal)}
+.tag.gold{background:rgba(240,180,41,0.1);border-color:rgba(240,180,41,0.35);color:var(--gold)}
+
+.proj-card{background:rgba(255,255,255,0.025);border:1px solid var(--bdr);border-radius:24px;overflow:hidden;margin-bottom:2rem;transition:border-color 0.25s,transform 0.2s}
+.proj-card:hover{border-color:rgba(240,180,41,0.4);transform:translateY(-3px)}
+.proj-layout{display:grid;grid-template-columns:1.1fr 1fr;min-height:340px}
+.proj-visual{position:relative;overflow:hidden;background:linear-gradient(135deg,#0d1b2e,#12102a,#0a1410)}
+.proj-visual-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.proj-body{padding:2.5rem;display:flex;flex-direction:column;justify-content:space-between}
+.proj-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(240,180,41,0.1);border:1px solid rgba(240,180,41,0.3);border-radius:100px;padding:5px 14px;font-size:10px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1.2rem;width:fit-content;font-weight:600}
+.proj-title{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:800;color:var(--txt);margin-bottom:0.8rem;letter-spacing:-0.5px;line-height:1.3}
+.proj-desc{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:1.2rem;font-weight:300}
+.proj-insights{margin-bottom:1.3rem}
+.pi{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--muted);margin-bottom:7px;line-height:1.6;font-weight:300}
+.pi-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px;display:inline-block}
+.ptags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:1.5rem}
+.ptag{background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:#c4b5fd;padding:4px 11px;border-radius:6px;font-size:10px;font-weight:600;letter-spacing:0.5px}
+.proj-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding-top:1.2rem;border-top:1px solid var(--bdr)}
+.met-val{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--gold)}
+.met-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:3px;font-weight:500}
+
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.contact-p{color:var(--muted);font-size:0.95rem;line-height:1.85;margin-bottom:2rem;font-weight:300}
+.clinks{display:flex;flex-direction:column;gap:12px}
+.clink{display:flex;align-items:center;gap:14px;padding:14px 18px;border:1px solid var(--bdr);border-radius:14px;text-decoration:none;color:var(--muted);transition:all 0.2s;background:var(--card)}
+.clink:hover{border-color:var(--teal);background:rgba(15,217,192,0.04)}
+.clink:hover .clink-main{color:var(--teal)}
+.clink-ico{width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid var(--bdr);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.clink-main{font-size:14px;font-weight:500;color:var(--txt);transition:color 0.2s}
+.clink-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* FORM */
+.contact-form{display:flex;flex-direction:column;gap:1.1rem}
+.fgroup{display:flex;flex-direction:column;gap:8px}
+.fgroup label{font-size:11px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+.fgroup input,.fgroup textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--bdr);border-radius:10px;padding:13px 16px;color:var(--txt);font-size:13px;font-family:'Inter',sans-serif;transition:border-color 0.2s;outline:none}
+.fgroup input:focus,.fgroup textarea:focus{border-color:var(--teal)}
+.fgroup textarea{height:110px;resize:vertical}
+.fbtn{width:100%;background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;border:none;padding:14px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.5px;transition:opacity 0.2s;font-family:'Inter',sans-serif;margin-top:0.3rem}
+.fbtn:hover{opacity:0.85}
+.form-success{display:none;background:rgba(15,217,192,0.1);border:1px solid rgba(15,217,192,0.3);border-radius:10px;padding:1.2rem 1.5rem;color:var(--teal);font-size:14px;text-align:center;font-weight:500}
+.form-success.show{display:block}
+
+footer{text-align:center;padding:2.5rem;border-top:1px solid var(--bdr);font-size:12px;color:var(--muted);letter-spacing:1px;font-family:'Syne',sans-serif}
+footer span{color:var(--teal)}
+
+@media(max-width:720px){
+  nav{padding:0 1.5rem}
+  .wrap{padding:0 1.5rem}
+  .about-layout,.proj-layout,.contact-layout,.certs-grid,.skills-grid{grid-template-columns:1fr}
+  .proj-visual{min-height:200px;position:relative}
+  .proj-visual-inner{position:relative;height:200px}
+  .hero-name{font-size:2.8rem}
+  .nav-links{gap:1.2rem}
+  .nav-links a{font-size:11px;letter-spacing:1px}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-canvas">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+</div>
+
+<nav>
+  <div class="logo">
+    <span class="brace">{</span><span class="name"> Sadique </span><span class="brace">}</span>
+  </div>
+  <div class="nav-links">
+    <a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a>
+    <a onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">Skills</a>
+    <a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</a>
+    <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div>
+      <div class="hero-eyebrow"><span class="eyebrow-dot"></span><span class="eyebrow-txt">Open to opportunities</span></div>
+      <div class="hero-name">Mohammad<br>Sadique</div>
+      <div class="hero-role">Data Analyst</div>
+      <div class="hero-bio">Turning raw numbers into decisions that matter. I build dashboards, uncover patterns, and tell stories through data — from energy forecasting to executive reporting.</div>
+      <div class="hero-btns">
+        <button class="btn-solid" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
+        <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get In Touch</button>
+      </div>
+      <div class="hero-pills">
+        <div class="hero-pill"><span class="pill-icon" style="background:rgba(15,217,192,0.15);color:#0fd9c0">⚡</span>Power BI</div>
+        <div class="hero-pill"><span class="pill-icon" style="background:rgba(240,180,41,0.15);color:#f0b429">📊</span>Tableau</div>
+        <div class="hero-pill"><span class="pill-icon" style="background:rgba(34,197,94,0.15);color:#4ade80">📗</span>Excel</div>
+        <div class="hero-pill"><span class="pill-icon" style="background:rgba(139,92,246,0.15);color:#8b5cf6">◆</span>DAX</div>
+        <div class="hero-pill"><span class="pill-icon" style="background:rgba(240,180,41,0.15);color:#f0b429">●</span>SQL</div>
+        <div class="hero-pill"><span class="pill-icon" style="background:rgba(244,114,182,0.15);color:#f472b6">▲</span>Python</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="about" class="sec">
+    <div class="sec-chip">01 — About Me</div>
+    <div class="sec-h">Who I Am</div>
+    <div class="sec-sub">A data analytics student passionate about extracting meaning from complexity.</div>
+    <div class="about-layout">
+      <div>
+        <p class="about-p">I'm <b>Mohammad Sadique</b>, a <b>Data Analytics student</b> with a sharp focus on turning messy data into clean, actionable insight. My toolkit spans Power BI, Tableau, Excel, SQL, and Python — all in service of one goal: better decisions.</p>
+        <p class="about-p">I've completed industry simulations with <b>Deloitte</b>, advanced bootcamps on Udemy, and dedicated Power BI workshops — all while building real dashboards that solve real problems.</p>
+        <p class="about-p">My latest project — an <b>Energy Cost Savings Forecaster</b> — demonstrates end-to-end analytics: data modeling, DAX measures, map visuals, and storytelling.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-top">
+          <div class="avatar">MS</div>
+          <div>
+            <div class="info-name">Mohammad Sadique</div>
+            <div class="info-title-tag">Data Analyst · Student</div>
+          </div>
+        </div>
+        <div class="info-rows">
+          <div class="info-row"><span class="ikey">Focus</span><span class="ival">Power BI · Tableau · Excel</span></div>
+          <div class="info-row"><span class="ikey">Bootcamp</span><span class="ival">Udemy — Basics to Advanced</span></div>
+          <div class="info-row"><span class="ikey">Simulation</span><span class="ival">Deloitte Analytics</span></div>
+          <div class="info-row"><span class="ikey">Email</span><span class="ival" style="color:#0fd9c0;font-size:11px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="deb3b1b6baadbfbab7afabbbeeefeaed9eb9b3bfb7b2f0bdb1b3">[email&#160;protected]</a></span></div>
+          <div class="info-row"><span class="ikey">Status</span><span class="open-pill"><span class="open-dot"></span>Open to opportunities</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="sec" style="padding-top:0">
+    <div class="sec-chip">02 — Skills & Certifications</div>
+    <div class="sec-h">Tech Stack</div>
+    <div class="sec-sub">Certifications earned, tools mastered, skills applied to real projects.</div>
+    <div class="certs-grid">
+      <div class="cert-card"><div class="cert-ico">🏢</div><div><div class="cert-name">Deloitte Data Analytics Job Simulation</div><div class="cert-org">Deloitte</div></div></div>
+      <div class="cert-card"><div class="cert-ico">📈</div><div><div class="cert-name">Data Analytics Bootcamp: Basics to Advanced</div><div class="cert-org">Udemy</div></div></div>
+      <div class="cert-card"><div class="cert-ico">⚡</div><div><div class="cert-name">Power BI Workshop</div><div class="cert-org">Workshop Certification</div></div></div>
+      <div class="cert-card"><div class="cert-ico">🤖</div><div><div class="cert-name">AI-Powered Excel Micro Course</div><div class="cert-org">Excel + AI</div></div></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="sk-header"><div class="sk-ico">📊</div><div class="sk-cat">Visualization</div></div>
+        <div class="tags"><span class="tag hi">Power BI</span><span class="tag hi">Tableau</span><span class="tag hi">DAX</span><span class="tag">Dashboard Design</span><span class="tag">Data Modeling</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-header"><div class="sk-ico">📗</div><div class="sk-cat">Spreadsheets & Reporting</div></div>
+        <div class="tags"><span class="tag gold">Excel</span><span class="tag gold">Advanced Formulas</span><span class="tag gold">Pivot Tables</span><span class="tag gold">AI-Powered Excel</span><span class="tag">Power Query</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-header"><div class="sk-ico">🗄️</div><div class="sk-cat">Data & Databases</div></div>
+        <div class="tags"><span class="tag hi">SQL</span><span class="tag">PostgreSQL</span><span class="tag">Data Cleaning</span><span class="tag">Relationships</span><span class="tag">BigQuery</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-header"><div class="sk-ico">🐍</div><div class="sk-cat">Programming & Analytics</div></div>
+        <div class="tags"><span class="tag hi">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag hi">Data Storytelling</span><span class="tag">Forecasting</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="sec" style="padding-top:0">
+    <div class="sec-chip">03 — Work</div>
+    <div class="sec-h">Featured Project</div>
+    <div class="sec-sub">Real dashboards. Real insights. Real impact.</div>
+    <div class="proj-card">
+      <div class="proj-layout">
+        <div class="proj-visual">
+          <div class="proj-visual-inner">
+            <svg width="100%" viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg">
+              <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0d1b2e"/><stop offset="100%" stop-color="#0a1410"/></linearGradient></defs>
+              <rect width="400" height="280" fill="url(#bg)"/>
+              <line x1="0" y1="230" x2="400" y2="230" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+              <line x1="0" y1="180" x2="400" y2="180" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+              <line x1="0" y1="130" x2="400" y2="130" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+              <rect x="30" y="150" width="38" height="80" rx="4" fill="rgba(15,217,192,0.35)"/>
+              <rect x="85" y="120" width="38" height="110" rx="4" fill="rgba(15,217,192,0.45)"/>
+              <rect x="140" y="100" width="38" height="130" rx="4" fill="rgba(15,217,192,0.55)"/>
+              <rect x="195" y="135" width="38" height="95" rx="4" fill="rgba(15,217,192,0.4)"/>
+              <rect x="250" y="80" width="38" height="150" rx="4" fill="rgba(15,217,192,0.7)"/>
+              <rect x="305" y="110" width="38" height="120" rx="4" fill="rgba(15,217,192,0.5)"/>
+              <rect x="250" y="80" width="38" height="150" rx="4" fill="rgba(240,180,41,0.15)" stroke="#f0b429" stroke-width="1.5"/>
+              <polyline points="49,145 104,115 159,95 214,130 269,75 324,105" fill="none" stroke="#f472b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+              <circle cx="49" cy="145" r="3.5" fill="#f472b6"/>
+              <circle cx="104" cy="115" r="3.5" fill="#f472b6"/>
+              <circle cx="159" cy="95" r="3.5" fill="#f472b6"/>
+              <circle cx="214" cy="130" r="3.5" fill="#f472b6"/>
+              <circle cx="269" cy="75" r="5" fill="#f0b429" stroke="#fff" stroke-width="1.5"/>
+              <circle cx="324" cy="105" r="3.5" fill="#f472b6"/>
+              <text x="49" y="248" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10" font-family="Inter,sans-serif">Bio</text>
+              <text x="104" y="248" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10" font-family="Inter,sans-serif">Geo</text>
+              <text x="159" y="248" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10" font-family="Inter,sans-serif">Hydro</text>
+              <text x="214" y="248" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10" font-family="Inter,sans-serif">Solar</text>
+              <text x="269" y="248" text-anchor="middle" fill="#f0b429" font-size="10" font-family="Inter,sans-serif" font-weight="600">Wind</text>
+              <text x="324" y="248" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10" font-family="Inter,sans-serif">Other</text>
+              <rect x="240" y="52" width="72" height="20" rx="10" fill="rgba(240,180,41,0.15)" stroke="rgba(240,180,41,0.4)" stroke-width="1"/>
+              <text x="276" y="65" text-anchor="middle" fill="#f0b429" font-size="9" font-family="Inter,sans-serif" font-weight="600">HIGHEST $59K</text>
+              <text x="20" y="25" fill="rgba(255,255,255,0.5)" font-size="11" font-family="Inter,sans-serif" font-weight="500">Savings by Energy Source</text>
+            </svg>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div>
+            <div class="proj-badge">⚡ Featured Project</div>
+            <div class="proj-title">Energy Cost Savings Forecaster</div>
+            <div class="proj-desc">A Power BI dashboard answering: <em>Which households save the most — and why?</em> Interactive slicers, maps, KPIs, and year-over-year trends.</div>
+            <div class="proj-insights">
+              <div class="pi"><span class="pi-dot"></span>Wind energy leads all sources with $59K in total savings</div>
+              <div class="pi"><span class="pi-dot"></span>Europe & Africa top monthly usage at 137K and 130K</div>
+              <div class="pi"><span class="pi-dot"></span>Subsidized households save more across all income brackets</div>
+              <div class="pi"><span class="pi-dot"></span>Middle-income group shows highest total savings at $90K</div>
+            </div>
+            <div class="ptags">
+              <span class="ptag">Power BI</span><span class="ptag">DAX</span><span class="ptag">Data Modeling</span><span class="ptag">Maps</span><span class="ptag">YoY</span>
+            </div>
+          </div>
+          <div class="proj-metrics">
+            <div><div class="met-val">248K</div><div class="met-label">Total Savings</div></div>
+            <div><div class="met-val">767K</div><div class="met-label">Monthly Usage</div></div>
+            <div><div class="met-val">5</div><div class="met-label">Energy Sources</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:rgba(255,255,255,0.04);border:1px dashed rgba(255,255,255,0.14);border-radius:20px;padding:2rem;display:flex;align-items:center;gap:1.2rem;opacity:0.5">
+      <div style="width:44px;height:44px;border-radius:12px;border:1px dashed rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;color:#9590b8">+</div>
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#9590b8">More projects on the way</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.2);margin-top:3px">Currently building new dashboards & analysis case studies</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="sec" style="padding-top:0">
+    <div class="sec-chip">04 — Contact</div>
+    <div class="sec-h">Let's Talk Data</div>
+    <div class="sec-sub">Have a challenge, an opportunity, or want to collaborate? Let's connect.</div>
+    <div class="contact-layout">
+      <div>
+        <p class="contact-p">I'm always open to new opportunities, analytics challenges, and conversations about data. Whether you need a dashboard built or a dataset explored — I'm ready.</p>
+        <div class="clinks">
+          <a class="clink" href="/cdn-cgi/l/email-protection#cba6a4a3afb8aaafa2babeaefbfafff88baca6aaa2a7e5a8a4a6">
+            <div class="clink-ico">✉️</div>
+            <div><div class="clink-main">Email</div><div class="clink-sub" style="color:#0fd9c0"><span class="__cf_email__" data-cfemail="c3aeacaba7b0a2a7aab2b6a6f3f2f7f083a4aea2aaafeda0acae">[email&#160;protected]</span></div></div>
+          </a>
+          <a class="clink" href="https://www.linkedin.com/in/mohammad-sadique-1028ba2a1" target="_blank" rel="noopener">
+            <div class="clink-ico" style="background:rgba(10,102,194,0.15);border-color:rgba(10,102,194,0.3)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div><div class="clink-main">LinkedIn</div><div class="clink-sub">mohammad-sadique-1028ba2a1</div></div>
+          </a>
+          <a class="clink" href="https://github.com/Sadique-Osman" target="_blank" rel="noopener">
+            <div class="clink-ico" style="background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.12)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#eeeaf8"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </div>
+            <div><div class="clink-main">GitHub</div><div class="clink-sub">Sadique-Osman</div></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- ✅ FORMSPREE CONTACT FORM -->
+      <!-- STEP: Replace mvzwwgbw below with your actual Formspree form ID -->
+      <div>
+        <div id="success-msg" class="form-success">✅ Message sent! I'll get back to you soon.</div>
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/mvzwwgbw" method="POST">
+          <div class="fgroup">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+          </div>
+          <div class="fgroup">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+          </div>
+          <div class="fgroup">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your data project..." required></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New message from portfolio!">
+          <input type="hidden" name="_next" value="">
+          <button type="submit" class="fbtn">Send Message ↗</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>Crafted by <span>{ Sadique }</span> · Data Analyst · 2025</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const form = document.getElementById('contact-form');
+const successMsg = document.getElementById('success-msg');
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const data = new FormData(form);
+  const action = form.action;
+  if (action.includes('mvzwwgbw')) {
+    alert('Please replace mvzwwgbw in the HTML with your actual Formspree ID!');
+    return;
+  }
+  try {
+    const res = aw
